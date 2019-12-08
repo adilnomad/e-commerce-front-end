@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://apis.google.com/js/api.js" async defer></script>
+    <meta name="google-signin-client_id" 
+    content="480405174019-o6jngdg2c7u3rrt099m884l8n5rao8g3.apps.googleusercontent.com">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="E-commerce Shop, buy awesome stuff"
+    /> 
+    <script>
+      function initGoogle() {
+        window.gapi.load('auth2', function() {
+           window.gapi.auth2.init({
+             client_id:
+               '480405174019-o6jngdg2c7u3rrt099m884l8n5rao8g3.apps.googleusercontent.com',
+           });
+       });
+     }
+   </script>
+   <script src="https://apis.google.com/js/platform.js" onload="initGoogle()"></script>
+    <title>E-commerce Shop</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
