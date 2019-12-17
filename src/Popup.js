@@ -6,18 +6,33 @@ import Button from 'react-bootstrap/Button';
 import GoogleSignIn from './GoogleSignIn';
 
 class Popup extends React.Component { 
+
+    constructor(props) {
+        super(props);
+
+        this.refresh = this.refresh.bind(this);
+    }
   
     componentDidMount() {
         new TimelineMax({repeat: 0}).fromTo(this.title, 0.5, 
             { opacity:0, y: 20 }, { opacity:1, y: 0});
     }
 
+    refresh() {
+        console.log("something");
+        this.forceUpdate();
+        this.props.upd();
+    }
+
     render() {  
         return (  
             <div className="login">
                 <div ref={div => (this.title = div)} className="innerLogIn">
-                    <GoogleSignIn> </GoogleSignIn>
+                    <GoogleSignIn refresh={this.refresh}> </GoogleSignIn>
                     <br />
+                    <Button className="demoButton" variant="primary"> 
+                            Demo LogIn
+                    </ Button>
                     <Form className="FormLogIn" onSubmit={this.afterSubmition}>
                         <Form.Group controlId="formGroupEmail">
                             <Form.Label size="sm">Email address</Form.Label>
@@ -30,6 +45,10 @@ class Popup extends React.Component {
                         <br /> <br />
                         <Button size="sm" variant="success" type="submit">
                             Submit
+                        </Button>
+                        <Button size="sm" onClick={this.props.closePopup} className="closeButton" 
+                        variant="success" type="submit">
+                            Close
                         </Button>
                     </Form>
                 </div>   

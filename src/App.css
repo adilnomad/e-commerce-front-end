@@ -54,7 +54,7 @@ body {
   top: 20%;  
   bottom: 25%; 
   width: 330px;
-  height: 450px; 
+  height: 430px; 
   border-radius: 10px;  
   margin: auto; 
   background: white;  
@@ -63,7 +63,7 @@ body {
 
 .FormLogIn {
   position: relative;
-  top: 10%;
+  top: 4%;
   width: 90%;
   margin: auto;
 }
@@ -79,4 +79,25 @@ body {
   position: relative;
   top: 8%;
   left: 4%;
+}
+
+
+.closeButton {
+  margin-left: 60%;
+}
+
+.demoButton {
+  position: relative;
+  margin: auto;
+  margin-top: 7%;
+  margin-left: 4%;
+  width: 91%;
+  
+} 
+
+.signOut {
+  float: right;
+  margin-top: 2%;
+  margin-right: 4%;
+  box-shadow: 0px 0px 1px 1px lightgray;
 }
