@@ -27,10 +27,16 @@ class GoogleSignIn extends React.Component {
     onSuccess(googleUser) {
 
         const profile = googleUser.getBasicProfile();
-        console.log("Name: " + profile.getName());
+        console.log("Name: " + profile.getGivenName());
         console.log("Token: " + googleUser.getAuthResponse().id_token);
-        localStorage.setItem('userName', profile.getName());
-        localStorage.setItem('token', profile.getName());
+        localStorage.setItem('userName', profile.getGivenName());
+        localStorage.setItem('token', googleUser.getAuthResponse().id_token);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://localhost:3001/logIn', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('token=' + googleUser.getAuthResponse().id_token + '&name=' + profile.getGivenName());
+
         this.update();
 
     }

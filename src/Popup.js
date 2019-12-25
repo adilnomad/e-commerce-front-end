@@ -30,9 +30,6 @@ class Popup extends React.Component {
                 <div ref={div => (this.title = div)} className="innerLogIn">
                     <GoogleSignIn refresh={this.refresh}> </GoogleSignIn>
                     <br />
-                    <Button className="demoButton" variant="primary"> 
-                            Demo LogIn
-                    </ Button>
                     <Form className="FormLogIn" onSubmit={this.afterSubmition}>
                         <Form.Group controlId="formGroupEmail">
                             <Form.Label size="sm">Email address</Form.Label>
@@ -42,6 +39,10 @@ class Popup extends React.Component {
                             <Form.Label size="sm">Password</Form.Label>
                             <Form.Control size="sm" type="password" placeholder="Password" />
                         </Form.Group>
+                        <br /> 
+                        <Button className="demoButton" variant="primary" size="sm" onClick={this.props.guestLogin}> 
+                            Demo Project LogIn
+                        </Button>
                         <br /> <br />
                         <Button size="sm" variant="success" type="submit">
                             Submit

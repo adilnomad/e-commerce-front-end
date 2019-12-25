@@ -1,6 +1,6 @@
 body {
-  background-image: url(staticAssets/landingPage.png);
-  background-size: cover;
+  background-image: url(staticAssets/landingPage.png); 
+  background-size: cover; 
 }
 
 .App {
@@ -44,7 +44,7 @@ body {
   right: 0;  
   bottom: 0;   
   margin: auto;
-  background-color: rgba(0,0,0, 0.2);  
+  background-color: rgba(0,0,0, 0.5);  
 }  
 
 .innerLogIn {  
@@ -83,21 +83,90 @@ body {
 
 
 .closeButton {
+  position: relative;
   margin-left: 60%;
 }
 
 .demoButton {
-  position: relative;
-  margin: auto;
-  margin-top: 7%;
-  margin-left: 4%;
-  width: 91%;
-  
+  margin-bottom: 3%;
 } 
 
 .signOut {
-  float: right;
   margin-top: 2%;
-  margin-right: 4%;
-  box-shadow: 0px 0px 1px 1px lightgray;
+  margin-right: 3%;
+  width: 90px;
+}
+
+.personAnim {
+  position: absolute;
+  top: 59%;
+  left: 9%;
+}
+
+.mr-lg-2 {
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 1px 1px lightgrey;
+}
+.mr { 
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.greetUser {
+  margin: 0px;
+  padding: 0px;
+  margin-left: 50%;
+  margin-right: 3%;
+  color: white;
+}
+
+.imgSize {
+  width: 150px;
+  height: 100px;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+.itemBox {
+  border-bottom: solid black 3px;
+  background: white;
+}
+
+.price {
+  margin-left: 45%;
+  margin-top: 2%;
+  float: right;
+}
+
+.contentWrapper {
+  padding: 1%;
+  margin-top: 4%;
+  margin-left: 4%;
+  border-radius: 15px;
+  background-color: white;
+  width: 60%;
+  height: 550px;
+  box-shadow: 0px 0px 4px 3px grey;
+  overflow: scroll;
+  overflow-x: hidden;
+
+}
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
+.loadMore {
+  position: relative;
+  margin-left: 45%;
+  margin-right: 40%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
