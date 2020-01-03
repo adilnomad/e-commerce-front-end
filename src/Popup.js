@@ -41,7 +41,8 @@ class Popup extends React.Component {
                         </Form.Group>
                         <br /> 
                         <Button className="demoButton" variant="primary" size="sm" onClick={this.props.guestLogin}> 
-                            Adding register option soon! Use Google sign in for now!
+                            Hey there! :-) Currently migratting from http to https and 
+                            some content might not show up temporarily. Please, check-in in 2 days! :-) 
                         </Button>
                         <br /> <br />
                         <Button size="sm" variant="success" type="submit">
