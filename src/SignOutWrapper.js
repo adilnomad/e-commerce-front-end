@@ -7,7 +7,7 @@ class SignOutWrapper extends React.Component {
     render() {
         return(
             <div>
-                <Button variant="secondary"
+                <Button variant="primary"
                     className="signOut" size="sm" onClick={this.props.signOut}> 
                     Sign Out
                 </Button>

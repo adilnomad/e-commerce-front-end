@@ -41,14 +41,14 @@ class Popup extends React.Component {
                         </Form.Group>
                         <br /> 
                         <Button className="demoButton" variant="primary" size="sm" onClick={this.props.guestLogin}> 
-                            Demo Project LogIn
+                            Adding register option soon! Use Google sign in for now!
                         </Button>
                         <br /> <br />
                         <Button size="sm" variant="success" type="submit">
                             Submit
                         </Button>
                         <Button size="sm" onClick={this.props.closePopup} className="closeButton" 
-                        variant="success" type="submit">
+                                variant="success" type="submit">
                             Close
                         </Button>
                     </Form>

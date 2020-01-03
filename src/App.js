@@ -11,6 +11,8 @@ import { Row, Col }  from 'react-bootstrap';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import ItemEntry from './ItemEntry.js';
+import AnimationFour from './AnimationFour.js';
+import PastOrd from './PastOrd.js';
 
 
 class App extends React.Component {
@@ -25,25 +27,38 @@ class App extends React.Component {
     this.refresh = this.refresh.bind(this);
     this.upd = this.upd.bind(this);
     this.guestLogin = this.guestLogin.bind(this);
+    this.val = this.val.bind(this);
+    this.getProductList = this.getProductList.bind(this);
+    this.appendPrductList = this.appendPrductList.bind(this);
+    this.orderItem = this.orderItem.bind(this);
+    this.pastOrders = this.pastOrders.bind(this);
     
     this.state = {
       LogIn : false,
       isSignedIn: true,
       demoToken: null,
-      input : null
+      input : null,
+      products : [],
+      pastOrd : [],
+      searchKeyword : "",
+      page : 0
     }; 
 
   }
 
 
   componentDidMount() {
+
     window.addEventListener('storage', this.localStorageUpdated);
+    this.urlPath = 'http://ec2-13-57-58-131.us-west-1.compute.amazonaws.com:3001/getItems?';
 
     if (localStorage.getItem('userName')) {
       this.setState({isSignedIn : false});
-      console.log("check");
     }
 
+    this.setState({searchKeyword : "shirt"});
+    this.getProductList();
+    this.orderItem('-1');
   }
 
   upd() {
@@ -63,8 +78,27 @@ class App extends React.Component {
     this.setState({demoToken : 'abc'});
   }
 
-  val() {
-    console.log(this.state.input);
+  val(event) {
+    this.setState({searchKeyword : event.target.value});
+  }
+
+  getProductList() {
+    this.setState({products : []});
+    fetch(this.urlPath + 'productName=' + this.state.searchKeyword + '&page=' + 0)
+      .then(res => res.json())
+      .then(res => this.setState({products : this.state.products.concat(res)}))
+      .then(console.log(this.state.products))
+      .catch(er => console.log(er))
+
+    this.forceUpdate();
+  }
+
+  appendPrductList() {
+    this.setState({page : this.state.page + 1});
+    fetch(this.urlPath + 'productName=' + this.state.searchKeyword + '&page=' + this.state.page)
+      .then(res => res.json())
+      .then(res => this.setState({products : this.state.products.concat(res)}))
+      .catch(er => console.log(er))
   }
 
   toggleLogIn() {
@@ -87,6 +121,26 @@ class App extends React.Component {
     this.forceUpdate();
   }
 
+  orderItem(item_id) {
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://ec2-13-57-58-131.us-west-1.compute.amazonaws.com:3001/placeOrder', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send('token=' + localStorage.getItem('token') + '&product=' + item_id);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        this.setState({pastOrd : JSON.parse(xhr.response)});
+        console.log(this.state.pastOrd);
+      }
+    }
+  }
+  
+  pastOrders() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://ec2-13-57-58-131.us-west-1.compute.amazonaws.com:3001/pastOrders', true);
+    xhr.send();
+  }
+
   render() {
 
       if (!localStorage.getItem('userName')) {
@@ -105,44 +159,39 @@ class App extends React.Component {
             </SignInButton>
             <AnimationThree>
             </AnimationThree>
+            <AnimationFour>
+            </AnimationFour>
             {this.state.LogIn ? <Popup upd={this.upd}  guestLogin={this.guestLogin} closePopup={this.toggleLogIn} /> : null}  
           </div>
         )
       } else {
         return (
           <div>
-            <nav class="navbar navbar-dark bg-dark">
+            <nav class="navbar navbar-dark bg-blue">
               <Form class="form-inline my-2 my-lg-0">
                 <Row>
                   <Col>
-                  <FormControl type="text"  inputref={ref => this.setState({input : ref}) } 
+                  <FormControl type="text"  onChange={this.val}
                     placeholder="Search product" className="mr-lg-2" size="sm" style={{width: 300}} />
                   </Col>
                   <Col>
                   <Button variant="outline-info" className="mr" size="sm" 
-                  onClick={this.val.bind(this)}> Search</Button>
+                    onClick={this.getProductList}> Search</Button>
                   </Col>
                 </Row>
               </Form>
               <p className="greetUser"> Hi, {localStorage.getItem('userName')} </p>
               <SignOutWrapper signOut={this.signOut} /> 
             </nav>
-              <div className="contentWrapper">
-                <ItemEntry imgs="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                id='1' title="image" description="texadsfaslf" price="50"> </ItemEntry>
-                <ItemEntry imgs="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                id='1' title="image" description="texadsfaslf" price="50"> </ItemEntry>
-                 <ItemEntry imgs="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                id='1' title="image" description="texadsfaslf" price="50"> </ItemEntry>
-                 <ItemEntry imgs="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                id='1' title="image" description="texadsfaslf" price="50"> </ItemEntry>
-                 <ItemEntry imgs="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                id='1' title="image" description="texadsfaslf" price="50"> </ItemEntry>
-                 <ItemEntry imgs="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                id='1' title="image" description="texadsfaslf" price="50"> </ItemEntry>
-                 <ItemEntry imgs="https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                id='1' title="image" description="texadsfaslf" price="50"> </ItemEntry>
-                <Button className="loadMore" size="sm" variant="primary"> Load More</Button>
+              <div className="contentWrapperItems">
+                {this.state.products.map(item => <ItemEntry imgs={item.image} id={item.id} order={this.orderItem}
+                description={item.description} title={item.product_name} price={item.retail_price}> 
+                </ItemEntry>)}
+                <Button className="loadMore" size="sm" variant="primary" onClick={this.appendPrductList}> Load More </Button>
+              </div>
+              <div className="contentWrapperPastOrders">
+                <h4> Past Orders </h4>
+                  {this.state.pastOrd.map(item => <PastOrd title={item.product_name} price={item.retail_price}> </PastOrd>)} 
               </div>
           </div>
         )

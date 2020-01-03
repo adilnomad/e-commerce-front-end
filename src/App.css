@@ -1,6 +1,6 @@
+
 body {
-  background-image: url(staticAssets/landingPage.png); 
-  background-size: cover; 
+  background-color: #F9F9F9;
 }
 
 .App {
@@ -54,7 +54,7 @@ body {
   top: 20%;  
   bottom: 25%; 
   width: 330px;
-  height: 430px; 
+  height: 400px; 
   border-radius: 10px;  
   margin: auto; 
   background: white;  
@@ -92,9 +92,8 @@ body {
 } 
 
 .signOut {
-  margin-top: 2%;
-  margin-right: 3%;
-  width: 90px;
+  margin-right: 2%;
+  width: 80px;
 }
 
 .personAnim {
@@ -103,11 +102,17 @@ body {
   left: 9%;
 }
 
+.fashonAnim {
+  position: absolute;
+  top: 35%;
+  left: 55%;
+}
+
 .mr-lg-2 {
   margin-top: 2%;
   margin-left: 10%;
   margin-bottom: 10px;
-  box-shadow: 0px 0px 1px 1px lightgrey;
+  box-shadow: 0px 0px 1px 1px #F1F0F0;
 }
 .mr { 
   margin-top: 10%;
@@ -118,8 +123,7 @@ body {
   margin: 0px;
   padding: 0px;
   margin-left: 50%;
-  margin-right: 3%;
-  color: white;
+  color: black;
 }
 
 .imgSize {
@@ -127,6 +131,7 @@ body {
   height: 100px;
   margin: 2px;
   border-radius: 5px;
+  margin-left: 20px;
 }
 
 .itemBox {
@@ -135,30 +140,29 @@ body {
 }
 
 .price {
-  margin-left: 45%;
-  margin-top: 2%;
+  width: 12%;
   float: right;
 }
 
-.contentWrapper {
+.contentWrapperItems {
   padding: 1%;
-  margin-top: 4%;
-  margin-left: 4%;
+  margin-top: 1%;
+  margin-left: 3%;
   border-radius: 15px;
   background-color: white;
   width: 60%;
-  height: 550px;
-  box-shadow: 0px 0px 4px 3px grey;
+  height: 600px;
+  box-shadow: 0px 0px 4px 4px #F1F0F0;
   overflow: scroll;
   overflow-x: hidden;
-
+  float: left;
 }
 
 ::-webkit-scrollbar {
-  width: 0px;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0px;  
+  background: transparent; 
 }
-/* Optional: show position indicator in red */
+
 ::-webkit-scrollbar-thumb {
   background: #FF0000;
 }
@@ -169,4 +173,32 @@ body {
   margin-right: 40%;
   margin-top: 2%;
   margin-bottom: 2%;
+}
+
+.mr-lg-2 {
+  margin-top: 3%;
+}
+
+.mr {
+  margin-top: 15%;
+}
+
+.contentWrapperPastOrders {
+  padding: 1%;
+  margin-top: 1%;
+  margin-right: 3%;
+  border-radius: 15px;
+  background-color: white;
+  width: 30%;
+  height: 600px;
+  box-shadow: 0px 0px 4px 4px #F1F0F0;
+  overflow: scroll;
+  overflow-x: hidden;
+  float: right;
+}
+
+.productInfo {
+  width: 60%;
+  margin-left: 5%;
+  float: left;
 }

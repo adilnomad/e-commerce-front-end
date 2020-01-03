@@ -9,18 +9,18 @@ class ItemEntry extends React.Component {
         return (
             <div className="itemBox" >
                 <Row>
-                    <Col xs>
+                    <div>
                        <img className="imgSize" alt={this.props.id} src={this.props.imgs} />
-                    </Col>
-                    <Col xs>
+                    </div>
+                    <div className="productInfo">
                         <p> <b> {this.props.title} </b> </p>
                         <br/>
                         <p> {this.props.description} </p>
-                    </Col>
-                    <Col xs className="price">
+                    </div>
+                    <div className="price">
                         <h4> <b> ${this.props.price} </b> </h4>
-                        <Button variant="success" size="sm">Order</Button>
-                    </Col>
+                        <Button variant="success" size="sm" onClick={() => this.props.order(this.props.id)}>Order</Button>
+                    </div>
                 </Row>
             </div>
         );

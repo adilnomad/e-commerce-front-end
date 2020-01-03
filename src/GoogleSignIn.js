@@ -17,30 +17,6 @@ class GoogleSignIn extends React.Component {
         };
     }
 
-    update() {
-        console.log("success!!!!!");
-        this.props.refresh();
-        this.forceUpdate();
-        
-    }
-
-    onSuccess(googleUser) {
-
-        const profile = googleUser.getBasicProfile();
-        console.log("Name: " + profile.getGivenName());
-        console.log("Token: " + googleUser.getAuthResponse().id_token);
-        localStorage.setItem('userName', profile.getGivenName());
-        localStorage.setItem('token', googleUser.getAuthResponse().id_token);
-
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://localhost:3001/logIn', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.send('token=' + googleUser.getAuthResponse().id_token + '&name=' + profile.getGivenName());
-
-        this.update();
-
-    }
-
     componentDidMount() {
 
         window.gapi.signin2.render( 
@@ -52,6 +28,27 @@ class GoogleSignIn extends React.Component {
                 onsuccess: this.onSuccess,
             }, 
         );
+    }
+
+    update() {
+
+        this.props.refresh();
+        this.forceUpdate();
+        
+    }
+
+    onSuccess(googleUser) {
+
+        const profile = googleUser.getBasicProfile();
+        localStorage.setItem('userName', profile.getGivenName());
+        localStorage.setItem('token', googleUser.getAuthResponse().id_token);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://ec2-13-57-58-131.us-west-1.compute.amazonaws.com:3001/logIn', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('token=' + googleUser.getAuthResponse().id_token + '&name=' + profile.getGivenName());
+        this.update();
+
     }
 
     render() {
