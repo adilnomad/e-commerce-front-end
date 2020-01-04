@@ -44,7 +44,7 @@ class GoogleSignIn extends React.Component {
         localStorage.setItem('token', googleUser.getAuthResponse().id_token);
 
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'http://ec2-13-57-58-131.us-west-1.compute.amazonaws.com:3001/logIn', true);
+        xhr.open('POST', 'http://ec2-13-57-210-181.us-west-1.compute.amazonaws.com:8000/logIn', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.send('token=' + googleUser.getAuthResponse().id_token + '&name=' + profile.getGivenName());
         this.update();
